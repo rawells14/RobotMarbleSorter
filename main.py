@@ -22,4 +22,4 @@ def stop(motor_number):
     file.write('')
     file.close()
 
-move_motor(500, 2, 1000)
+move_motor(500, 3, 1000)
