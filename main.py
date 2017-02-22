@@ -2,21 +2,21 @@ path = '/sys/class/tacho-motor/motor';
 
 
 def move_motor(speed, motor_number, time):
-    file = open(path + motor_number + '/speed_sp', 'w')
+    file = open(str(path + motor_number + '/speed_sp'), 'w')
     file.write(str(speed))
     file.close()
 
-    file = open(path + motor_number + '/time_sp', 'w')
+    file = open(str(path + motor_number + '/time_sp'), 'w')
     file.write(str(time))
     file.close()
 
-    file = open(path + motor_number + '/command', 'w')
+    file = open(str(path + motor_number + '/command'), 'w')
     file.write('run-timed')
     file.close()
 
 
 def stop(motor_number):
-    file = open(path + motor_number + '/command', 'w')
+    file = open(str(path + motor_number + '/command'), 'w')
     file.write('')
     file.close()
 
