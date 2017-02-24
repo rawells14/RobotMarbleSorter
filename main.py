@@ -1,6 +1,9 @@
+#! /usr/bin/env python
+
+import time
 
 motor_path = '/sys/class/tacho-motor/motor'
-
+barcode_sensor_path = '/sys/class/lego-sensor/sensor1'
 
 def move_motor(speed, motor_number, time):
     motor_number = str(motor_number)
@@ -23,6 +26,33 @@ def stop(motor_number):
     file.write('')
     file.close()
 
-move_motor(500, 1, 1000)
-move_motor(500, 2, 1000)
+def poll_barcode_sensor():
+    value = 0
+    file = open(barcode_sensor_path + '/mode', 'w')
+    file.write('COL-COLOR')
+    file.close()
+    with open(barcode_sensor_path + '/value0', 'r') as file:
+        value = file.readline()
+    file.close()
+    return value
+
+def read_barcode():
+
+    # 16 total binary values
+    move_motor(360, 0, 5000)
+    barcode = []
+    for i in range(0, 16):
+        time.sleep(.08)
+        val = poll_barcode_sensor()
+        print(val)
+        barcode.append(int(val))
+    return barcode
+
+# moves the dispenser piston
+# move_motor(500, 0, 1000)
+
+# moves the barcode motor
+#   move_motor(500, 1, 1000)
+
+print(read_barcode())
 
