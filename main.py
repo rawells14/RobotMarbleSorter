@@ -38,11 +38,11 @@ def poll_barcode_sensor():
 
 def read_barcode():
 
-    # 16 total binary values
-    move_motor(360, 0, 5000)
+    # 20 total binary values
+    move_motor(100, 1, 9000)
     barcode = []
-    for i in range(0, 16):
-        time.sleep(.08)
+    for i in range(0, 20):
+        time.sleep(.2)
         val = poll_barcode_sensor()
         print(val)
         barcode.append(int(val))
