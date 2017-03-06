@@ -62,27 +62,61 @@ def read_barcode():
 def read_barcode_auto():
 
 	#wait until see a white line then switches to black line to start polling
-	move_motor(220, 1)
+	move_motor(100, 1)
 	barcode = []
 	val = poll_barcode_sensor()
 	while int(val)==1:
 		val = poll_barcode_sensor()
-	while int(val)==0:
+	while int(val)!=1:
 		val = poll_barcode_sensor()
 	print(val)
+	time.sleep(.4)
+	move_motor(220,1)
 	for i in range(0,17):
-		time.sleep(.115)
+		time.sleep(.11)
 		val = poll_barcode_sensor()
 		print(val)
 		#sometimes white is read as its color value 6 so I am changing it to 0
 		if int( val ) == 6:
 			val = 0
-		barcode.append(int(val))
+		if(i>0):
+			barcode.append(int(val))
 	stop(1)
 	#get rid of odd indexes to get barcode without spaces
 	print(barcode)
-	for i in range (0,9):
+	for i in range (0,8):
 		del barcode[i]
+	return barcode
+
+def read_barcode_auto2():
+
+	#wait until see a white line then switches to black line to start polling
+	move_motor(220, 1)
+	barcode = []
+	val = poll_barcode_sensor()
+	while int(val)==0:
+		val = poll_barcode_sensor()
+	stop(1)
+	time.sleep(1)
+	move_motor(20, 1)
+	while int(val) == 1:
+		val = poll_barcode_sensor()
+	stop(1)
+	for i in range(1,9):
+                move_motor(220, 1)
+		time.sleep(.125)
+		stop(1)
+		val = poll_barcode_sensor()
+		time.sleep(1)
+		print(val)
+		#sometimes white is read as its color value 6 so I am changing it to 0
+		if int( val ) == 6:
+			val = 0
+		barcode.append(int(val))
+	#get rid of odd indexes to get barcode without spaces
+	print(barcode)
+	#for i in range (0,9):
+	#	del barcode[i]
 	return barcode
 
 # moves the dispenser piston
