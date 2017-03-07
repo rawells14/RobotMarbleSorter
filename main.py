@@ -62,11 +62,7 @@ def read_barcode():
 def read_barcode_auto():
 
 	#wait until see a white line then switches to black line to start polling
-<<<<<<< HEAD
 	move_motor(100, 7)
-=======
-	move_motor(100, 1)
->>>>>>> origin/master
 	barcode = []
 	val = poll_barcode_sensor()
 	while int(val)==1:
@@ -74,17 +70,10 @@ def read_barcode_auto():
 	while int(val)!=1:
 		val = poll_barcode_sensor()
 	print(val)
-<<<<<<< HEAD
 	time.sleep(.45)
 	move_motor(220,7)
 	for i in range(0,17):
 		time.sleep(.107)
-=======
-	time.sleep(.4)
-	move_motor(220,1)
-	for i in range(0,17):
-		time.sleep(.11)
->>>>>>> origin/master
 		val = poll_barcode_sensor()
 		print(val)
 		#sometimes white is read as its color value 6 so I am changing it to 0
@@ -92,11 +81,7 @@ def read_barcode_auto():
 			val = 0
 		if(i>0):
 			barcode.append(int(val))
-<<<<<<< HEAD
 	stop(7)
-=======
-	stop(1)
->>>>>>> origin/master
 	#get rid of odd indexes to get barcode without spaces
 	print(barcode)
 	for i in range (0,8):
@@ -134,7 +119,6 @@ def read_barcode_auto2():
 	#	del barcode[i]
 	return barcode
 
-<<<<<<< HEAD
 
 
 def output_data(code):
@@ -184,23 +168,17 @@ def output_data(code):
 
 
 
-=======
->>>>>>> origin/master
 # moves the dispenser piston
 # move_motor(500, 0, 1000)
 
 # moves the barcode motor
 #   move_motor(500, 1, 1000)
 
-<<<<<<< HEAD
 
 
 code = (read_barcode_auto())
 print('Every other removed: ')
 print(code)
-=======
-code = (read_barcode_auto())
->>>>>>> origin/master
 colors = ['White Glass', 'Red Glass', 'Blue Glass', 'Steel/HDPE']
 type = ['Large', 'Small']
 color_code = []
@@ -209,7 +187,6 @@ for i in [2,1,0]:
 	color_code.append(code[i])
 for i in [7,6,5,4,3]:
 	type_code.append(code[i])
-<<<<<<< HEAD
 
 
 print('Color code:' + str(color_code))
@@ -218,8 +195,3 @@ print('\n')
 print('Type code:' + str(type_code))
 
 output_data(code)
-=======
-print(color_code)
-print('\n')
-print(type_code)
->>>>>>> origin/master
