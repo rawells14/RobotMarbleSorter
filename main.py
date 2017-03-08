@@ -175,23 +175,21 @@ def output_data(code):
 #   move_motor(500, 1, 1000)
 
 
-
-code = (read_barcode_auto())
-print('Every other removed: ')
-print(code)
-colors = ['White Glass', 'Red Glass', 'Blue Glass', 'Steel/HDPE']
-type = ['Large', 'Small']
-color_code = []
-type_code = []
-for i in [2,1,0]:
+for j in (1, 4)
+    code = (read_barcode_auto())
+    print('Every other removed: ')
+    print(code)
+    color_code = []
+    type_code = []
+    for i in [2,1,0]:
 	color_code.append(code[i])
-for i in [7,6,5,4,3]:
+    for i in [7,6,5,4,3]:
 	type_code.append(code[i])
 
 
-print('Color code:' + str(color_code))
+    print('Color code:' + str(color_code))
 
-print('\n')
-print('Type code:' + str(type_code))
+    print('\n')
+    print('Type code:' + str(type_code))
 
-output_data(code)
+    output_data(code)
