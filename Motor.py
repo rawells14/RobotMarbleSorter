@@ -1,20 +1,14 @@
-#!/usr/bin/env python
-
-import time
-
-motor_path = '/sys/class/tacho-motor/motor'
-sensor_path = '/sys/class/lego-sensor/sensor'
-
 class Motor(object):
+    motor_path = '/sys/class/tacho-motor/motor'
 
     def __init__(self, motor_number):
-        self.path = motor_path + str(motor_nmber)  
+        self.path = motor_path + str(motor_nmber)
 
     def move_motor(self, speed):
         file = open(self.path + '/speed_sp', 'w')
         file.write(str(speed))
         file.close()
-    
+
         file = open(self.path + '/command', 'w')
         file.write('run-forever')
         file.close()
@@ -37,7 +31,7 @@ class Motor(object):
         file = open(self.path + '/command', 'w')
         file.write('stop')
         file.close()
-        
+
     def move_motor_rel_pos(self, position, speed):
         file = open(self.path + '/position_sp', 'w')
         file.write(str(position))
@@ -79,60 +73,3 @@ class Motor(object):
             value = file.readline()
         file.close()
         return value
-
-
-class Barcode(object):
-
-    def __init__(self, sensor_number, motor_number):
-        self.path = sensor_path + str(sensor_number)
-        self.motor_number = motor_number
-
-    def poll(self):
-        value = 0
-        file = open(self.path + '/mode', 'w')
-        file.write('COL-COLOR')
-        file.close()
-        with open(self.path + '/value0', 'r') as file:
-            value = file.readline()
-        file.close()
-        return value
-
-    def read_barcode(self):
-        code = []
-        i = 0
-        barcode_motor = Motor(self.motor_number)
-        while i < 100:
-            code.append(self.poll)
-            code.append(barcode_motor.pos)
-            barcode_motor.move_motor_rel_pos(20, 150)
-        return code
-
-    def process_code(self, code):
-        #FIX ME: need to process data from scan and transform into number and type of marbles
-
-class PelletIdentifier
-
-    def __init__(self, sensor_number):
-        self.path = sensor_path + str(sensor_number)
-        
-    def poll_color(self):
-        RGB = []
-        file = open(self.path + '/mode', 'w')
-        file.write('RGB-RAW')
-        file.close()
-        for i in {'0', '1', '2'}:
-            with open(self.path + '/value' + i, 'r') as file:
-                RGB.append(file.readline())
-            file.close()
-        return RGB
-
-
-
-
-
-    
-
-
-
-
-
