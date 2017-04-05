@@ -38,9 +38,7 @@ class Motor(object):
         file.write('stop')
         file.close()
         
-    def move_motor_pos(self, position):
-        #FIX ME: need to figure out how to set to move to
-        #        relative position to work with the rest of the code
+    def move_motor_rel_pos(self, position, speed):
         file = open(self.path + '/position_sp', 'w')
         file.write(str(position))
         file.close
@@ -49,8 +47,30 @@ class Motor(object):
         file.write('hold')
         file.close()
 
+        file = open(self.path + '/speed_sp', 'w')
+        file.write(str(speed));
+        file.close()
+
         file = open(self.path + '/command', 'w')
         file.write('run-to-rel-pos')
+        file.close()
+
+    def move_motor_abs_pos(self, position, speed):
+        #Should be used for pellet sorter
+        file = open(self.path + '/position_sp', 'w')
+        file.write(str(position))
+        file.close
+
+        file = open(self.path + '/stop_action', 'w')
+        file.write('hold')
+        file.close()
+
+        file = open(self.path + '/speed_sp', 'w')
+        file.write(str(speed))
+        file.close()
+
+        file = open(self.path + '/command', 'w')
+        file.write('run-to-abs-pos')
         file.close()
 
     def pos(self):
