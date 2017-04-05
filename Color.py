@@ -1,4 +1,5 @@
 class Color(object):
+    default = 'Steel'
     color_strings = ['Large Red', 'Small Red', 'Large White', 'Small White',
                      'HDPE', 'Large Blue', 'Small Blue', 'Large Green', 'Small Green',
                      'Large Yellow', 'Small Yellow', 'Steel']
@@ -15,4 +16,22 @@ class Color(object):
                     [[105, 135], [90, 120], [40, 50]],
                     [[90, 95], [70, 85], [43, 47]]]
 
-print(len(Color.color_ranges))
+    def __init__(self, RGB):
+        self.R = RGB[0]
+        self.G = RGB[1]
+        self.B = RGB[2]
+        self.colorString = self.identify_color()
+
+    def identify_color(self):
+        color = ''
+        i = 0
+        for i in range(0, len(self.color_ranges)):
+            if ((self.R in range(self.color_ranges[i][0][0], self.color_ranges[i][0][1])) and (self.G in range(self.color_ranges[i][1][0], self.color_ranges[i][1][1])) and (self.B in range(self.color_ranges[i][2][0], self.color_ranges[i][2][1]))):
+                  color = self.color_strings[i]
+                  break
+        if (color == ''):
+            color = default;
+        return color
+        
+    def get_color_string(self):
+        return self.colorString
