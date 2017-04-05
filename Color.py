@@ -30,8 +30,8 @@ class Color(object):
                   color = self.color_strings[i]
                   break
         if (color == ''):
-            color = default;
+            color = self.default;
         return color
-        
+
     def get_color_string(self):
         return self.colorString
