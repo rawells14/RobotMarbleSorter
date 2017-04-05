@@ -104,7 +104,7 @@ class Barcode(object):
         while i < 100:
             code.append(self.poll)
             code.append(barcode_motor.pos)
-            barcode_motor.move_motor_pos(barcode_motor.pos() + 20)
+            barcode_motor.move_motor_rel_pos(20, 150)
         return code
 
     def process_code(self, code):
