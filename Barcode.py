@@ -1,6 +1,6 @@
 import time
+sensor_path = '/sys/class/lego-sensor/sensor'
 class Barcode(object):
-    sensor_path = '/sys/class/lego-sensor/sensor'
     def __init__(self, sensor_number, motor_number):
         self.path = sensor_path + str(sensor_number)
         self.motor_number = motor_number
@@ -27,3 +27,4 @@ class Barcode(object):
 
     def process_code(self, code):
         #FIX ME: need to process data from scan and transform into number and type of marbles
+        print('HI')
