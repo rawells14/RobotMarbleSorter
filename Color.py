@@ -20,7 +20,10 @@ class Color(object):
         self.R = RGB[0]
         self.G = RGB[1]
         self.B = RGB[2]
-        self.colorString = self.identify_color()
+        self.colorString = self.identify_color
+        print('Red: ' + str(self.R))
+        print('Green: ' + str(self.G))
+        print('Blue: ' + str(self.B))
 
     def identify_color(self):
         color = ''
