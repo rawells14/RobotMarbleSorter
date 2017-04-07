@@ -1,9 +1,10 @@
-motor_path = '/sys/class/tacho-motor/motor'
+
 class Motor(object):
 
 
     def __init__(self, motor_number):
-        self.path = motor_path + str(motor_number)
+        self.motor_path = '/sys/class/tacho-motor/motor'
+        self.path = self.motor_path + str(motor_number)
 
     def move_motor(self, speed):
         file = open(self.path + '/speed_sp', 'w')
