@@ -17,6 +17,22 @@ class PelletIdentifier:
             file.close()
         return RGB
 
+    def isMarble(self):
+        color = Color(self.poll_color())
+        if (color.identify_color_num() == -1):
+            return False
+        else:
+            return True
+
+#returns a number. will be valid index of totalMarbles if color reading was in the RANGES
+#will be number greater than valid indexes of totalMarbles if color reading was in trash RANGES
+#will be negative 1 if no valid range was found
+
+    def identify(self):
+        color = self.poll_color()
+        return color.identify_color_num()
+
+
 #p = PelletIdentifier(0)
 #while(True):
     #print(p.poll_color())

@@ -75,3 +75,39 @@ class Barcode(object):
         else:
             print(material_needed + ': ' + str(type_1) + ' ' + types[0] + ' and ' + str(type_2) + ' ' + types[1])
         return
+
+    def process_code_dosage(self, code):
+        #will return array of 2 arrays holding value of position in sorter and number of marbles needed
+        # [[Steel, 2], [HDPE, 3]] would be [[0, 2], [1,3]]
+        dosage = [[-1,-1],[-1,-1]]
+        material_code = []
+        for i in [2,1,0]:
+            material_code.append(code[i])
+        if(material_code == [0, 0, 1]):
+            dosage[0][0] = 2 #small white
+            dosage[1][0] = 3 #large white
+        elif(material_code == [0, 1, 0]):
+            dosage[0][0] = 6 #small red
+            dosage[1][0] = 7 #large red
+        elif(material_code == [0, 1, 1]):
+            dosage[0][0] = 4 #small blue
+            dosage[1][0] = 5 #large blue
+        elif(material_code == [1, 0, 0]):
+            dosage[0][0] = 0 #steel
+            dosage[1][0] = 1 #HDPE
+        for i in [7,6,5,4,3]:
+            num_pellets += str(code[i])
+        num_pellets = int(num_pellets, 2)
+        type_1 = 0
+        type_2 = 0
+        for i in range(1, num_pellets):
+            type_1 += 1
+            if(type_1 % 4 == 0):
+                type_1 = 0
+                type_2 += 1
+        if(type_1 > 3 and type_2 > 3):
+            print('Impossible amount of marbles')
+        dosage[0][1] = type_1
+        dosage[1][1] = type_2
+
+        return dosage
