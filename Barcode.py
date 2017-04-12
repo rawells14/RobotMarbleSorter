@@ -41,8 +41,39 @@ class Barcode(object):
         return code
 
     def process_code(self, code):
-        #FIX ME: need to process data from scan and transform into number and type of marbles
-        print('HI')
+        materials = ['White Glass', 'Red Glass', 'Blue Glass', 'Steel/HDPE']
+        types = ['Large', 'Small']
+        material_code = []
+        num_pellets = ''
+        for i in [2, 1, 0]:
+            material_code.append(code[i])
+        for i in [7,6,5,4,3]:
+            num_pellets += str(code[i])
+        material_needed = 'Not Detected'
+        if(material_code == [0, 0, 1]):
+            material_needed = materials[0]
+        elif(material_code == [0, 1, 0]):
+            material_needed = materials[1]
+        elif(material_code == [0, 1, 1]):
+            material_needed = materials[2]
+        elif(material_code == [1, 0, 0]):
+            material_needed = materials[3]
+            types[0] = 'Steel'
+            types[1] = 'HDPE'
+        num_pellets = int(num_pellets, 2)
+        print(material_needed)
+        type_1 = 0
+        type_2 = 0
+        for i in range(1, num_pellets):
+            type_1 += 1
+            if(type_1 % 4 == 0):
+                type_1 = 0
+                type_2 += 1
+        if(type_1 > 3 and type_2 > 3):
+            print('Impossible amount of marbles')
+        else:
+            print(material_needed + ': ' + str(type_1) + ' ' + types[0] + ' and ' + str(type_2) + ' ' + types[1])
+        return
 
 b = Barcode(1, 0)
 b.read_barcode()

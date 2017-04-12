@@ -17,10 +17,10 @@ class PelletIdentifier:
             file.close()
         return RGB
 
-p = PelletIdentifier(0)
-while(True):
+#p = PelletIdentifier(0)
+#while(True):
     #print(p.poll_color())
 
-    c = Color(p.poll_color())
-    print(c.identify_color())
-    time.sleep(1)
+#    c = Color(p.poll_color())
+#    print(c.identify_color())
+#    time.sleep(1)
