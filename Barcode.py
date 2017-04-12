@@ -32,12 +32,13 @@ class Barcode(object):
                 is_start_of_barcode = True
 
         # reads barcode
-        while i < 8:
+        while i < 9:
+            barcode_motor.move_motor_rel_pos(53, 100)
             code.append(self.poll())
-            barcode_motor.move_motor_rel_pos(54, 100)
             print(code[i])
             i+=1
             time.sleep(1)
+
         return code
 
     def process_code(self, code):
@@ -74,6 +75,3 @@ class Barcode(object):
         else:
             print(material_needed + ': ' + str(type_1) + ' ' + types[0] + ' and ' + str(type_2) + ' ' + types[1])
         return
-
-b = Barcode(1, 0)
-b.read_barcode()

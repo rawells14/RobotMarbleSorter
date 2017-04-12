@@ -11,6 +11,10 @@ class Motor(object):
         file.write(str(speed))
         file.close()
 
+        file = open(self.path + '/stop_action', 'w')
+        file.write('hold')
+        file.close()
+
         file = open(self.path + '/command', 'w')
         file.write('run-forever')
         file.close()
