@@ -3,15 +3,15 @@ import time
 class Sorter(object):
 
         def __init__(self, conveyer_number, popper_number):
-            self.positions = [0, -156, -63, -270, 91, 176, 274, 336, 397]
+            self.positions = [0, -180, -63, -290, 91, 176, 274, 336, 397]
             self.colors = ['small blue', 'small red', 'large blue', 'large red', 'large white', 'small white', 'hdpe', 'steel', 'trash']
             self.conveyer_motor = Motor(conveyer_number)
             self.popper_motor = Motor(popper_number)
 
         def pop(self):
-            self.popper_motor.move_motor_abs_pos(-100, 1500)
+            self.popper_motor.move_motor_abs_pos(-100, 1000)
             time.sleep(1)
-            self.popper_motor.move_motor_abs_pos(0, 1500)
+            self.popper_motor.move_motor_abs_pos(0, 1000)
 
 
         def move_to_marble(self, color):
