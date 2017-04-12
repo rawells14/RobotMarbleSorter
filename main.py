@@ -2,6 +2,17 @@
 import time
 from Motor import Motor
 from Barcode import Barcode
-#motor = Motor(2)
-b = Barcode(1, 0)
-b.read_barcode()
+from Sorter import Sorter
+
+motor = Motor(0)
+motor.move_motor_abs_pos(0, 100)
+
+time.sleep(1)
+
+sorter = Sorter(0, 1)
+
+sorter.pop()
+
+motor.move_motor_abs_pos(0, 100)
+# b = Barcode(2, 0)
+# b.read_barcode()
