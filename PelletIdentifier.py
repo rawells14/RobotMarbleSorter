@@ -19,7 +19,7 @@ class PelletIdentifier:
 
     def isMarble(self):
         color = Color(self.poll_color())
-        if (color.identify_color_num() == -1):
+        if (color.identify_color_num() > 7):
             return False
         else:
             return True
@@ -29,7 +29,7 @@ class PelletIdentifier:
 #will be negative 1 if no valid range was found
 
     def identify(self):
-        color = self.poll_color()
+        color = Color(self.poll_color())
         return color.identify_color_num()
 
 

@@ -22,22 +22,18 @@ class Color(object):
 
     #NEW order
     color_strings = ['Steel', 'HDPE', 'Small White', 'Large White', 'Small Blue', 'Large Blue', 'Small Red', 'Large Red',
-                    'Small Green', 'Large Green', 'Large Green 2' 'Small Yellow', 'Large Yellow']
+                    'box']
 
     #NEW RANGES
-    color_ranges = [[[75,92],[83, 100], [42, 52]],
-                    [[135, 145], [139, 148], [82, 95]],
-                    [[235, 265], [240, 265], [145, 160]],
-                    [[225, 265], [230, 265], [165, 190]],
-                    [[45, 80],[50,70],[40,83]],
-                    [[65, 90], [60,80], [84, 106]],
-                    [[40, 50], [115, 160], [25, 29]],
-                    [[40, 50], [110, 160], [30, 35]],
-                    [[75,95], [60, 70], [30, 42]],
-                    [[55, 65], [55, 60], [30, 35]],
-                    [[120, 125], [80, 85], [45, 52]],
-                    [[140, 165], [195, 245], [34, 40]],
-                    [[124, 140], [230, 245], [34, 42]]
+    color_ranges = [[[30,62],[30, 60], [15, 30]],
+                    [[55, 77], [45, 65], [25, 42]],
+                    [[190, 215], [160, 185], [99, 110]],
+                    [[132, 185], [110, 165], [90, 135]],
+                    [[15, 40],[10,25],[20,50]],
+                    [[25, 60], [15,38], [35, 80]],
+                    [[10, 20], [70, 120], [0, 14]],
+                    [[10, 20], [55, 110], [0, 14]],
+                    [[0,15], [0,15], [0,15]]
                     ]
 
 
@@ -52,8 +48,8 @@ class Color(object):
 
 
 #returns a number. will be valid index of totalMarbles if color reading was in the RANGES
-#will be number greater than valid indexes of totalMarbles if color reading was in trash RANGES
-#will be negative 1 if no valid range was found
+#will be number greater than valid indexes of totalMarbles if color reading matches box color
+#will be negative 1 if no valid range was found, so it is trash
     def identify_color_num(self):
         color = -1
         for i in range(0, len(self.color_ranges)):

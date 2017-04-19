@@ -9,7 +9,6 @@ i = 0
 while (i < 12):
     sleep(2)
     print(p.poll_color())
-    file.write(str'p.poll_color()')
     sleep(1)
     m.move_motor_rel_pos(360, 150)
     i += 1

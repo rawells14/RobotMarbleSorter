@@ -13,9 +13,11 @@ from Color import Color
 #Barcode Motor in port A when robot booted
 #Sorter conveyer belt in port B when robot booted
 #Sorter popper servo in port C when robot booted
+#Piston Motor in port D when robot booted
 #Barcode Sensor in port 1 when robot booted
 #Pellet Sensor in port 2 when robot booted
-#
+
+
 #DO NOT UNPLUG OR MOVE ANYTHING.
 #IF YOU DO, RESET EVERYTHING AS IN THE INSTRUCTIONS THEN REBOOT
 
@@ -27,6 +29,7 @@ totalDosage = [0,0,0,0,0,0,0,0]
 barcodeReader = Barcode(0,0)
 pelletReader = PelletIdentifier(1)
 sorter = Sorter(1, 2)
+piston = Motor(3)
 
 #read in 4 barcodes and store the dosages from each
 dosagesToAdd = []
@@ -47,16 +50,17 @@ while (!pelletReader.isMarble()):
 while(!pelletReader.isMarble()):
     marbleNum = -1
     marbleNum = pelletReader.identify()
-    #if it was not in any range, continue and read again
+    #if it was not in any range, put it in the trash bin
     if (marbleNum < 0):
-        continue
-    #if it was trash, set it equal to 8 so that the sorter will move to trash position
-    elif(marbleNum > 7):
         marbleNum = 8
+    #if it was the color of the box, continue
+    elif(marbleNum > 7):
+        continue
     #if it was an actual marble, add to the total number of marbles of that type
     else:
         totalMarbles[i] += 1
     sorter.move_to_marble_num(marbleNum)
+    piston.move_motor_rel_pos(360, 500)
 
     #NEED TO PLAY WITH THIS NUMBER BECAUSE TIMING OF PISTON WILL BE CONSTANT AND IDK
     #HOW LONG THIS WHOLE PROCESS WILL TAKE

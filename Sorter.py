@@ -5,7 +5,7 @@ class Sorter(object):
         def __init__(self, conveyer_number, popper_number):
             self.positions = [0, -180, -63, -290, 91, 176, 274, 336, 397]
             self.colors = ['small blue', 'small red', 'large blue', 'large red', 'large white', 'small white', 'hdpe', 'steel', 'trash']
-            self.newPostitionOrder = [336, 274, 176, 91, 0, -63, -180, -290, 397]
+            self.newPostitionOrder = [336, 260, 170, 85, 0, -80, -180, -290, 397]
             self.newColorsOrder = ['Steel', 'HDPE', 'small white', 'large white', 'small blue', 'large blue',
                                 'small red', 'large red', 'trash']
             self.conveyerSpeed = 350
