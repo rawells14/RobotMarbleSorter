@@ -25,8 +25,8 @@ class PelletIdentifier:
             return True
 
 #returns a number. will be valid index of totalMarbles if color reading was in the RANGES
-#will be number greater than valid indexes of totalMarbles if color reading was in trash RANGES
-#will be negative 1 if no valid range was found
+#will be number greater than valid indexes of totalMarbles if color reading was in box RANGES
+#will be negative 1 if trash
 
     def identify(self):
         color = Color(self.poll_color())

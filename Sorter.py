@@ -5,7 +5,7 @@ class Sorter(object):
         def __init__(self, conveyer_number, popper_number):
             self.positions = [0, -180, -63, -290, 91, 176, 274, 336, 397]
             self.colors = ['small blue', 'small red', 'large blue', 'large red', 'large white', 'small white', 'hdpe', 'steel', 'trash']
-            self.newPostitionOrder = [336, 260, 170, 85, 0, -80, -180, -290, 397]
+            self.newPostitionOrder = [336, 250, 170, 85, -10, -80, -180, -290, 397]
             self.newColorsOrder = ['Steel', 'HDPE', 'small white', 'large white', 'small blue', 'large blue',
                                 'small red', 'large red', 'trash']
             self.conveyerSpeed = 350
@@ -24,8 +24,14 @@ class Sorter(object):
             self.move_to_marble_num(marbleNum)
             time.sleep(2)
             self.pop()
-            time.sleep(1)   
+            time.sleep(1)
 
+        def empty(self):
+            for i in range(0,8):
+                self.move_to_marble_num(i)
+                for j in range (0,4):
+                    self.pop_marble_num(i)
+#OLD FUNCTIONS
         def move_to_marble(self, color):
             for i in range(len(self.colors)):
                 if self.colors[i] == color:

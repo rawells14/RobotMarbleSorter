@@ -25,15 +25,15 @@ class Color(object):
                     'box']
 
     #NEW RANGES
-    color_ranges = [[[30,62],[30, 60], [15, 30]],
-                    [[55, 77], [45, 65], [25, 42]],
-                    [[190, 215], [160, 185], [99, 110]],
-                    [[132, 185], [110, 165], [90, 135]],
-                    [[15, 40],[10,25],[20,50]],
-                    [[25, 60], [15,38], [35, 80]],
-                    [[10, 20], [70, 120], [0, 14]],
-                    [[10, 20], [55, 110], [0, 14]],
-                    [[0,15], [0,15], [0,15]]
+    color_ranges = [[[37,69],[35, 62], [8, 16]],
+                    [[81, 111], [63, 88], [31, 49]],
+                    [[147, 195], [115, 157], [50, 78]], #small white
+                    [[205, 270], [174, 250], [118, 137]],
+                    [[20, 43],[15,28],[13,37]],
+                    [[43, 60], [25, 38], [49, 63]],
+                    [[15, 21], [60, 98], [0, 8]],
+                    [[15, 27], [60, 125], [0, 12]],
+                    [[13,18], [13, 18], [0, 8]]
                     ]
 
 
@@ -41,7 +41,7 @@ class Color(object):
         self.R = RGB[0]
         self.G = RGB[1]
         self.B = RGB[2]
-        self.colorString = self.identify_color
+        self.colorString = self.identify_color()
         print('Red: ' + str(self.R))
         print('Green: ' + str(self.G))
         print('Blue: ' + str(self.B))
@@ -57,7 +57,7 @@ class Color(object):
                   color = i
                   break
         return color
-
+#OLD FUNCTION
     def identify_color(self):
         color = ''
         i = 0
